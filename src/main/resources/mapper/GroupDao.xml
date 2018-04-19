@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace是指明Mybatis扫描的目录-->
+<mapper namespace="com.it.dao.GroupDao">
+
+     <resultMap id="findAllList" type="com.it.bean.Group">
+	    <id column="groupId" property="groupId"  />
+	    <result column="groupName" property="groupName" />
+	     <collection property="notes" javaType="java.util.List" ofType="java.util.HashMap">  
+	     	 <id column="id" property="id"  /> 
+	     	 <result column="title" property="title"  />  
+	     	 <result column="group_id" property="group_id"  />  
+	     </collection>  
+	</resultMap>
+ 
+     <select id="findAll" resultMap="findAllList">
+        SELECT 
+        g.groupId,g.groupName,n.id,n.title,n.group_id
+        FROM ngroup g
+        LEFT JOIN
+       	note n
+       	ON
+       	g.groupId = n.group_id
+        
+    </select>
+    
+     <select id="findById" resultType="com.it.bean.Group"
+      parameterType="java.lang.String">
+        SELECT groupId,groupName
+        FROM ngroup
+        WHERE 
+        groupId = #{groupId}
+    </select>
+    
+     <update id="update" parameterType="com.it.bean.Group">
+        UPDATE ngroup
+        SET
+        groupName 		= #{groupName} 
+        WHERE
+         groupId 	= #{groupId}
+    </update>
+    
+    <insert id="add" parameterType="com.it.bean.Group">
+		INSERT INTO ngroup
+		 (groupId,groupName)
+		VALUES 
+		 (#{groupId},#{groupName})
+	</insert>
+	
+	 <delete id="delete" parameterType="java.lang.String">
+    	DELETE FROM ngroup 
+    	WHERE 
+    	groupId = #{groupId}
+    </delete>
+    
+</mapper>
