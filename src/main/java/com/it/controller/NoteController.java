@@ -37,7 +37,6 @@ public class NoteController {
 		} else {
 			createNote.setSuccess(0);
 			createNote.setMessage("创建失败！");
-			createNote.setData(null);
 		}
 		return createNote;
 	}

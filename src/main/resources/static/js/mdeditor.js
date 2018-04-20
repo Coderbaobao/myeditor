@@ -3,7 +3,7 @@ var URL = "http://localhost:8080/";
 var getGroupId;
 var getNoteId;
 var isGN; //true:group  false:note
-
+var user = JSON.parse($.cookie('data'));
 $(function() {
 	editormd("test-editormd", {
 		width : "100%",
@@ -25,13 +25,15 @@ $(function() {
 		imageFormats : [ 'jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp' ],
 		imageUploadURL : "/uploadimg",
 	});	
+	$("#userName").html(user.userName);
+	console.log(user.userName);
 	findGroupAll();
-});
 
+});
 function findGroupAll(){
 	$.ajax({
 		type : "GET",
-		url : URL + "group/findGroupAll",
+		url : URL + "group/findGroupAll" + "?id=" + user.userId,
 		contentType : 'application/json; charset=utf-8',
 		success : function(val) {
 			if (val.success == 1){
@@ -93,7 +95,8 @@ $("#newGroup").click(function(groupName) {
 		url : URL + "group/addGroup",
 		data : JSON.stringify({
 			groupId   : getGroupId,
-			groupName : groupName
+			groupName : groupName,
+			user_id   :  $.cookie('user_id')
 		}),
 		dataType : 'json',
 		contentType : 'application/json; charset=utf-8',
@@ -110,7 +113,8 @@ $("#newGroup").click(function(groupName) {
 					$("#groupName").val("");
 			}
 		},
-		error : function() {
+		error : function(error) {
+			console.log(error);
 			alert("创建失败");
 		}
 	});

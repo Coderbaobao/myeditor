@@ -13,7 +13,7 @@
 	     </collection>  
 	</resultMap>
  
-     <select id="findAll" resultMap="findAllList">
+     <select id="findAll" resultMap="findAllList" parameterType="java.lang.String">
         SELECT 
         g.groupId,g.groupName,n.id,n.title,n.group_id
         FROM ngroup g
@@ -21,7 +21,8 @@
        	note n
        	ON
        	g.groupId = n.group_id
-        
+        WHERE
+       	g.user_id = #{user_id}
     </select>
     
      <select id="findById" resultType="com.it.bean.Group"
@@ -42,9 +43,9 @@
     
     <insert id="add" parameterType="com.it.bean.Group">
 		INSERT INTO ngroup
-		 (groupId,groupName)
+		 (groupId,groupName,user_id)
 		VALUES 
-		 (#{groupId},#{groupName})
+		 (#{groupId},#{groupName},#{user_id})
 	</insert>
 	
 	 <delete id="delete" parameterType="java.lang.String">

@@ -15,7 +15,7 @@
     <link rel="stylesheet" th:href="@{/css/ionicons.css}">
     <link rel="stylesheet" th:href="@{/css/AdminLTE.css}">
     <link rel="stylesheet" th:href="@{/css/_all-skins.css}">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/mdeditor.css}">
     <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon"/>
 </head>
 <body class="skin-blue fixed sidebar-open">
@@ -48,7 +48,7 @@
 		        <li class="dropdown user user-menu">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		             <img th:src="@{img/user2-160x160.jpg}"  class="user-image" alt="User Image">
-		            <span class="hidden-xs">Admin</span>
+		            <span class="hidden-xs" id="userName"></span>
 		          </a>
 		        </li>
 		      </ul>
@@ -95,9 +95,10 @@
 	</div>
 <!--引用文件-->
 <script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/jquery.cookie.js}"></script>
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/editormd/js/editormd.js}"></script>
 <script th:src="@{/js/adminlte.js}"></script>
-<script th:src="@{/js/index.js}"></script>
+<script th:src="@{/js/mdeditor.js}"></script>
 </body>
 </html>

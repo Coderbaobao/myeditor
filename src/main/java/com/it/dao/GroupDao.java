@@ -12,5 +12,5 @@ public interface GroupDao {
 	
 	Group findById(String id);
 	
-	List<Group>findAll();
+	List<Group>findAll(String id);
 }

@@ -10,7 +10,7 @@ public interface GroupService {
 
 	int updateGroup(Group group);
 	
-    List<Group> findAll();
+    List<Group> findAll(String id);
     
     Group findById(String id);
 }

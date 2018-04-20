@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" th:href="@{../editormd/images/logos/editormd-favicon-64x64.ico}" href="editormd/images/logos/editormd-favicon-64x64.ico">
-    <title>login</title>
+    <title>register</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css">
@@ -27,16 +27,17 @@
                     <input id="userName" type="text" aria-label="请输入用户名" placeholder="请输入用户名"
                            required>
                 </div>
-                <div class="input-wrapper password">
+                <div class="input-wrapper account">
                     <input id="password" type="password" aria-label="请输入密码" placeholder="请输入密码"
+                           required>
+                </div>
+                <div class="input-wrapper password">
+                    <input id="password2" type="password" aria-label="请再输入密码" placeholder="请再输入密码"
                            required>
                 </div>
             </div>
             <div class="button-wrapper">
-                <button class="signIn-button" id="signIn-button" type="button">登录</button>
-            </div>
-            <div class="ahref">
-                <a href="/register">注册</a>
+                <button class="signIn-button" id="register-button" type="button">注册</button>
             </div>
         </form>
         <div class="message-info" id="message-info">
@@ -48,6 +49,6 @@
 <script th:src="@{/js/jquery.min.js}" src="/js/jquery.min.js"></script>
 <script th:src="@{/js/jquery.cookie.js}" src="/js/jquery.cookie.js"></script>
 <script th:src="@{/bootstrap/js/bootstrap.min.js}" src="/bootstrap/js/bootstrap.min.js"></script>
-<script th:src="@{/js/login.js}" src="/js/login.js"></script>
+<script th:src="@{/js/register.js}" src="/js/register.js"></script>
 </body>
 </html>

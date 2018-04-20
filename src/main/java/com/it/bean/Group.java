@@ -10,6 +10,8 @@ public class Group implements Serializable{
 	private String groupName;
 	
 	private List<Note> notes; 
+	private String user_id;
+	
 	public String getGroupId() {
 		return groupId;
 	}
@@ -32,6 +34,14 @@ public class Group implements Serializable{
 
 	public void setNotes(List<Note> notes) {
 		this.notes = notes;
+	}
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	
 }

@@ -22,8 +22,8 @@ public class GroupController {
 	
 	@RequestMapping(value = "/findGroupAll", method = RequestMethod.GET,produces="application/json;charset=utf-8")
 	@ResponseBody
-	public Response<Group> findGroupAll(){
-		List<Group> list = groupService.findAll();
+	public Response<Group> findGroupAll(String id){
+		List<Group> list = groupService.findAll(id);
 		Response<Group> create = new Response<Group>();
 		if (list != null && list.size() > 0) {
 			create.setSuccess(1);

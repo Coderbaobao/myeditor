@@ -12,10 +12,16 @@ public class IndexController {
 		return "thymeleaf/login";
 	}
 	
-	@RequestMapping("/Meditor")
+	@RequestMapping("/register")
+	public String register() {
+		
+		return "thymeleaf/register";
+	}
+	
+	@RequestMapping("/mdEditor")
 	public String index() {
 	
-		return "thymeleaf/Meditor";
+		return "thymeleaf/mdEditor";
 	}
 	
 }

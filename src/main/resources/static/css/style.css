@@ -1,11 +1,92 @@
 
-.col3 {
-   padding-left: 31px
+/* login */
+.ahref{
+	 margin:18px;
 }
-.col5{
-	width: 37.666667%;
-	padding-left: 22px
-}
-.fc{
-	margin-bottom: -1px;
+ .login-card {
+            width: 320px;
+            height: 360px;
+            position: absolute;
+            z-index: 0;
+
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+
+            border-radius: 10px;
+            background: #FFFFFF;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+ .login-form {
+            margin: 58px auto;
+        }
+
+        .logo {
+            margin: 0 133px;
+            width: 200px;
+            height: 70px;
+            background: url("../editormd/images/logos/editormd-logo-96x96.png") no-repeat;
+            background-size: contain;
+        }
+
+        .hide-text {
+            font: 0/0 a;
+            color: transparent;
+            text-shadow: none;
+            border: 0;
+        }
+
+        .group-inputs {
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            width: 280px;
+            margin: 15px auto;
+        }
+        .account {
+            margin: 0 auto;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .password {
+            margin: -1px auto 0 auto;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .input-wrapper input {
+            width: 274px;
+            height: 40px;
+            border-color: transparent;
+            outline: none;
+            text-align: center;
+        }
+
+        .signIn-button {
+            width: 280px;
+            height: 45px;
+            background: #0F88EB;
+            box-shadow: none;
+            border: 0;
+            border-radius: 4px;
+            line-height: 40px;
+            color: #FFFFFF;
+            font-size: 15px;
+        }
+
+        .message-info {
+            width: 280px;
+            margin: 8px auto;
+            padding: 5px;
+            border: 1px solid #ebccd1;
+            border-radius: 4px;
+            color: #a94442;
+            background-color: #f2dede;
+        }
+
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 50px white inset;
+        }
 }
