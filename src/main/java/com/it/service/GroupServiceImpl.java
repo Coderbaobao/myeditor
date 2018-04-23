@@ -15,8 +15,8 @@ public class GroupServiceImpl implements GroupService{
 	private GroupDao groupDao;
 	
 	@Override
-	public List<Group> findAll(String id) {
-		return groupDao.findAll(id);
+	public List<Group> findAll(String noteId) {
+		return groupDao.findAll(noteId);
 	}
 
 	@Override
@@ -25,8 +25,8 @@ public class GroupServiceImpl implements GroupService{
 	}
 
 	@Override
-	public int deleteGroup(String id) {
-		return groupDao.delete(id);
+	public int deleteGroup(String groupId) {
+		return groupDao.delete(groupId);
 	}
 
 	@Override
@@ -35,8 +35,8 @@ public class GroupServiceImpl implements GroupService{
 	}
 
 	@Override
-	public Group findById(String id) {
-		return groupDao.findById(id);
+	public Group findById(String groupId) {
+		return groupDao.findById(groupId);
 	}	
 
 }

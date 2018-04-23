@@ -53,7 +53,7 @@ var doRegister = function() {
 		success : function(val) {
 			// 登录成功状态码为 1
 			if (val["success"] === 1) {
-				$.cookie('user_id', val["data"]["userId"], { expires: 7 });
+				$.cookie('data', JSON.stringify(val.data), { expires: 7 });
 				// 隐藏错误信息提示框
 				messageInfo.css('display', 'none');
 				// 设置成功提示信息

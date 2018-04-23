@@ -6,10 +6,10 @@ public interface NoteDao {
 
 	int add(Note note);
 	
-	int delete(String id);
+	int delete(String noteId);
 	
 	int update(Note note);
 	
-	Note findById(String id);
+	Note findById(String noteId);
 	
 }

@@ -43,7 +43,7 @@ public class NoteController {
 	@RequestMapping(value = "/saveNote", method = RequestMethod.POST,produces="application/json;charset=utf-8")
 	@ResponseBody
 	public Response<Note> saveNote(@RequestBody Note newNote){
-		Note note = noteService.findById(newNote.getId());
+		Note note = noteService.findById(newNote.getNoteId());
 		Response<Note> createNote = new Response<Note>();
 		Date day = new Date();
 		newNote.setModifyTime(day);
@@ -64,8 +64,8 @@ public class NoteController {
 	}
 	@RequestMapping(value = "/findById", method = RequestMethod.GET,produces="application/json;charset=utf-8")
 	@ResponseBody
-	public Response<Note> findById(String id){
-		Note note = noteService.findById(id);
+	public Response<Note> findById(String noteId){
+		Note note = noteService.findById(noteId);
 		Response<Note> createNote = new Response<Note>();
 		if (note != null) {
 			createNote.setSuccess(1);
@@ -80,11 +80,11 @@ public class NoteController {
 	
 	@RequestMapping(value = "/delNotebyId", method = RequestMethod.GET,produces="application/json;charset=utf-8")
 	@ResponseBody
-	public Response<Note> delNoteById(String id){
-		Note note = noteService.findById(id);
+	public Response<Note> delNoteById(String noteId){
+		Note note = noteService.findById(noteId);
 		Response<Note> createNote = new Response<Note>();
 		if (note != null) {
-			int de = noteService.deleteNote(id);
+			int de = noteService.deleteNote(noteId);
 			if(de > 0) {
 				createNote.setSuccess(1);
 				createNote.setMessage("删除成功！");

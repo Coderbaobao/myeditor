@@ -7,7 +7,7 @@
 	    <id column="groupId" property="groupId"  />
 	    <result column="groupName" property="groupName" />
 	     <collection property="notes" javaType="java.util.List" ofType="java.util.HashMap">  
-	     	 <id column="id" property="id"  /> 
+	     	 <id column="noteId" property="noteId"  /> 
 	     	 <result column="title" property="title"  />  
 	     	 <result column="group_id" property="group_id"  />  
 	     </collection>  
@@ -15,8 +15,8 @@
  
      <select id="findAll" resultMap="findAllList" parameterType="java.lang.String">
         SELECT 
-        g.groupId,g.groupName,n.id,n.title,n.group_id
-        FROM ngroup g
+        g.groupId,g.groupName,n.noteId,n.title,n.group_id
+        FROM groups g
         LEFT JOIN
        	note n
        	ON
@@ -28,28 +28,28 @@
      <select id="findById" resultType="com.it.bean.Group"
       parameterType="java.lang.String">
         SELECT groupId,groupName
-        FROM ngroup
+        FROM groups
         WHERE 
         groupId = #{groupId}
     </select>
     
      <update id="update" parameterType="com.it.bean.Group">
-        UPDATE ngroup
+        UPDATE groups
         SET
-        groupName 		= #{groupName} 
+        groupName = #{groupName} 
         WHERE
-         groupId 	= #{groupId}
+         groupId  = #{groupId}
     </update>
     
     <insert id="add" parameterType="com.it.bean.Group">
-		INSERT INTO ngroup
+		INSERT INTO groups
 		 (groupId,groupName,user_id)
 		VALUES 
 		 (#{groupId},#{groupName},#{user_id})
 	</insert>
 	
 	 <delete id="delete" parameterType="java.lang.String">
-    	DELETE FROM ngroup 
+    	DELETE FROM groups 
     	WHERE 
     	groupId = #{groupId}
     </delete>

@@ -18,8 +18,8 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
-	public int deleteNote(String id) {
-		return noteDao.delete(id);
+	public int deleteNote(String noteId) {
+		return noteDao.delete(noteId);
 	}
 
 	@Override
@@ -28,8 +28,8 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
-	public Note findById(String id) {
-		return noteDao.findById(id);
+	public Note findById(String noteId) {
+		return noteDao.findById(noteId);
 	}
 
 }

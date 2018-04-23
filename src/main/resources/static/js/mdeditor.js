@@ -3,11 +3,13 @@ var URL = "http://localhost:8080/";
 var getGroupId;
 var getNoteId;
 var isGN; //true:group  false:note
+
 var user = JSON.parse($.cookie('data'));
+
 $(function() {
 	editormd("test-editormd", {
 		width : "100%",
-		height : 640,
+		height : 940,
 		path : "/editormd/lib/",
 		codeFold : true,
 		searchReplace : true,
@@ -33,7 +35,7 @@ $(function() {
 function findGroupAll(){
 	$.ajax({
 		type : "GET",
-		url : URL + "group/findGroupAll" + "?id=" + user.userId,
+		url : URL + "group/findGroupAll" + "?noteId=" + user.userId,
 		contentType : 'application/json; charset=utf-8',
 		success : function(val) {
 			if (val.success == 1){
@@ -48,8 +50,8 @@ function findGroupAll(){
 						))
 		            	 for(var y = 0; y < val.list[i].notes.length; y++){
 		            		 $("#"+ val.list[i].groupId +"").append('<li>'
-		             				 +'<a href="javascript:getContent(\''+ val.list[i].notes[y].id +'\')"' 
-		             				 +'id="'+ val.list[i].notes[y].id +'"><i class="fa fa-circle-o">'
+		             				 +'<a href="javascript:getContent(\''+ val.list[i].notes[y].noteId +'\')"' 
+		             				 +'id="'+ val.list[i].notes[y].noteId +'"><i class="fa fa-circle-o">'
 		             				 +'</i>'+ val.list[i].notes[y].title +'</a></li>')
 		 					}
 				}	
@@ -94,9 +96,9 @@ $("#newGroup").click(function(groupName) {
 		type : "POST",
 		url : URL + "group/addGroup",
 		data : JSON.stringify({
-			groupId   : getGroupId,
-			groupName : groupName,
-			user_id   :  $.cookie('user_id')
+			groupId   :  getGroupId,
+			groupName :  groupName,
+			user_id   :  user.userId
 		}),
 		dataType : 'json',
 		contentType : 'application/json; charset=utf-8',
@@ -123,7 +125,7 @@ $("#newGroup").click(function(groupName) {
 function getContent(id) { 
 	$.ajax({
 		type : "GET",
-		url : URL + "note/findById" + "?id=" + id,
+		url : URL + "note/findById" + "?noteId=" + id,
 		contentType : 'application/json; charset=utf-8',
 		success : function(data) {
 			if (data.success == 1){
@@ -156,7 +158,7 @@ $("#newNote").click(function() {
 		type : "POST",
 		url : URL + "note/addNote",
 		data : JSON.stringify({
-			id       : getNoteId,
+			noteId   : getNoteId,
 			group_id : getGroupId
 		}),
 		dataType : 'json',
@@ -215,8 +217,8 @@ $("#saveBtn").click(function() {
 			type : "POST",
 			url : URL + "note/saveNote",
 			data : JSON.stringify({
-				id : getNoteId,
-				title : title,
+				noteId  : getNoteId,
+				title   : title,
 				content : content
 			}),
 			dataType : 'json',
@@ -242,7 +244,7 @@ $("#delBtn").click(function() {
 	if(isGN){
 		$.ajax({
 			type : "GET",
-			url : URL + "group/delGroupbyId"+ "?id=" + getGroupId,
+			url : URL + "group/delGroupbyId"+ "?groupId=" + getGroupId,
 			contentType : 'application/json; charset=utf-8',
 			success : function(data) {
 				if (data.success == 1){
@@ -259,7 +261,7 @@ $("#delBtn").click(function() {
 	}else{
 		$.ajax({
 			type : "GET",
-			url : URL + "note/delNotebyId"+ "?id=" + getNoteId,
+			url : URL + "note/delNotebyId"+ "?noteId=" + getNoteId,
 			contentType : 'application/json; charset=utf-8',
 			success : function(data) {
 				if (data.success == 1){

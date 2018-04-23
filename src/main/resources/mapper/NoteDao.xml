@@ -4,8 +4,8 @@
 <mapper namespace="com.it.dao.NoteDao">
 	
 	<insert id="add" parameterType="com.it.bean.Note">
-		INSERT INTO note (id,createTime,group_id)
-		VALUES (#{id}, #{createTime}, #{group_id})
+		INSERT INTO note (noteId,createTime,group_id)
+		VALUES (#{noteId}, #{createTime}, #{group_id})
 	</insert>
 	
 	 <update id="update" parameterType="com.it.bean.Note">
@@ -15,20 +15,20 @@
             content     = #{content},
             modifyTime  = #{modifyTime}
             
-        WHERE id = #{id}
+        WHERE noteId = #{noteId}
     </update>
      
      <select id="findById" resultType="com.it.bean.Note"
       parameterType="java.lang.String">
-        SELECT id,title,content,createTime,modifyTime,group_id
+        SELECT noteId,title,content,createTime,modifyTime,group_id
         FROM note
         WHERE 
-        id = #{id}
+        noteId = #{noteId}
     </select>
     
     <delete id="delete" parameterType="java.lang.String">
     	DELETE FROM note 
     	WHERE 
-    	id = #{id}
+    	noteId = #{noteId}
     </delete>
 </mapper>

@@ -3,6 +3,9 @@ package com.it.bean;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 public class Group implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -10,6 +13,7 @@ public class Group implements Serializable{
 	private String groupName;
 	
 	private List<Note> notes; 
+	@JsonInclude(Include.NON_NULL)
 	private String user_id;
 	
 	public String getGroupId() {

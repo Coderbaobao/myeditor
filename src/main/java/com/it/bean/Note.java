@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 public class Note implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private String id;
+	private String noteId;
 	private String title;
 	private String content;
 	@JsonFormat(pattern="yyyy-MM-dd hh:mm:ss a", locale="zh", timezone="GMT+8")
@@ -18,11 +20,12 @@ public class Note implements Serializable{
 	
 	private String group_id;
 	
-	public String getId() {
-		return id;
+	
+	public String getNoteId() {
+		return noteId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setNoteId(String noteId) {
+		this.noteId = noteId;
 	}
 	public String getTitle() {
 		return title;
@@ -56,7 +59,7 @@ public class Note implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Note [id=" + id + ", title=" + title + ", content=" + content + ", createTime=" + createTime
+		return "Note [id=" + noteId + ", title=" + title + ", content=" + content + ", createTime=" + createTime
 				+ ", modifyTime=" + modifyTime + ", group_id=" + group_id + "]";
 	}
 	
