@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>Edit v1.5</title>
-     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>Edit v1.5</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
 
-    <link rel="stylesheet" th:href="@{/editormd/css/editormd.css}"
-          href="/editormd/css/editormd.css"/>
-    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
-     <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
-    <link rel="stylesheet" th:href="@{/css/ionicons.css}">
-    <link rel="stylesheet" th:href="@{/css/AdminLTE.css}">
-    <link rel="stylesheet" th:href="@{/css/_all-skins.css}">
-    <link rel="stylesheet" th:href="@{/css/mdeditor.css}">
-    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" th:href="@{/editormd/css/editormd.css}"
+	href="/editormd/css/editormd.css" />
+<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+<link rel="stylesheet" th:href="@{/css/ionicons.css}">
+<link rel="stylesheet" th:href="@{/css/AdminLTE.css}">
+<link rel="stylesheet" th:href="@{/css/_all-skins.css}">
+<link rel="stylesheet" th:href="@{/css/mdeditor.css}">
+<link rel="shortcut icon"
+	href="https://pandao.github.io/editor.md/favicon.ico"
+	type="image/x-icon" />
 </head>
 <body class="skin-blue fixed sidebar-open">
-<div>
-<!--顶部导航条-->
-    <header class="main-header">
-        <a class="logo" href="#">
-            <span class="logo-lg"><b>My</b>editor</span>
-        </a> 
-       		
+	<div>
+		<!--顶部导航条-->
+		<header class="main-header">
+			<a class="logo" href="#"> <span class="logo-lg"><b>My</b>editor</span>
+			</a>
+
 			<nav class="navbar navbar-static-top">
 				<a href="#" class="sidebar-toggle" data-toggle="push-menu"
 					role="button"> <span class="sr-only">Toggle navigation</span>
@@ -37,55 +40,71 @@
 					<button class="btn btn-success" id="saveBtn">
 						<i class="glyphicon glyphicon-floppy-disk">保存</i>
 					</button>
+
+					<!-- Split button -->
+					<div class="btn-group" id="moveBtn">
+						<button type="button" class="btn btn-info">
+							<i class="glyphicon glyphicon-sort">移动</i>
+						</button>
+						<button type="button" class="btn btn-info dropdown-toggle"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="caret"></span> <span class="sr-only">Toggle
+								Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" id="move_menu">
+						</ul>
+					</div>
+
 					<button class="btn btn-danger" id="delBtn">
 						<i class="glyphicon glyphicon-trash">删除</i>
 					</button>
 				</form>
 				<!-- Navbar Right Menu -->
-		    <div class="navbar-custom-menu">
-		      <ul class="nav navbar-nav">
-		        <!-- User Account: style can be found in dropdown.less -->
-		        <li class="dropdown user user-menu">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		             <img th:src="@{img/user2-160x160.jpg}"  class="user-image" alt="User Image">
-		            <span class="hidden-xs" id="userName"></span>
-		          </a>
-		        </li>
-		      </ul>
-		    </div>
-  		</nav> 
-    </header>
- <!--左侧导航栏-->
-    <aside class="main-sidebar">
-    <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                  <i class="fa fa-search"></i>
-                </button>
-           </span>
-        </div>
-      </form>
-      <form class="sidebar-form">
-        <div class="input-group">
-          <input type="text" id="groupName" class="form-control" placeholder="新建分组">
-          <span class="input-group-btn">
-                <button type="submit" id="newGroup" class="btn btn-flat">
-                  <i class="fa fa-plus"></i>
-                </button>
-           </span>
-        </div>
-      </form>
-	<div >
-      <ul class="sidebar-menu" data-widget="tree" id="groupList"></ul>
-     </div>
-	</aside>
-     <!--主要内容区-->
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<!-- User Account: style can be found in dropdown.less -->
+						<li class="dropdown user user-menu"><a href="#"
+							class="dropdown-toggle" data-toggle="dropdown"> <img
+								th:src="@{img/user2-160x160.jpg}" class="user-image"
+								alt="User Image"> <span class="hidden-xs" id="userName"></span>
+						</a></li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<!--左侧导航栏-->
+		<aside class="main-sidebar">
+			<!-- search form -->
+			<form action="#" method="get" class="sidebar-form">
+				<div class="input-group">
+					<input type="text" name="q" class="form-control"
+						placeholder="Search..."> <span class="input-group-btn">
+						<button type="submit" name="search" id="search-btn"
+							class="btn btn-flat">
+							<i class="fa fa-search"></i>
+						</button>
+					</span>
+				</div>
+			</form>
+			<form class="sidebar-form">
+				<div class="input-group">
+					<input type="text" id="groupName" class="form-control"
+						placeholder="新建分组"> <span class="input-group-btn">
+						<button type="submit" id="newGroup" class="btn btn-flat">
+							<i class="fa fa-plus"></i>
+						</button>
+					</span>
+				</div>
+			</form>
+			<div>
+				<ul class="sidebar-menu" data-widget="tree" id="groupList"></ul>
+			</div>
+		</aside>
+		<!--主要内容区-->
 		<div class="content-wrapper">
-			<div class="form-group fc"> 
-				<input type="text" class="form-control" id="title" placeholder="新建笔记">
+			<div class="form-group fc">
+				<input type="text" class="form-control" id="title"
+					placeholder="新建笔记">
 			</div>
 
 			<div id="test-editormd">
@@ -93,12 +112,12 @@
 			</div>
 		</div>
 	</div>
-<!--引用文件-->
-<script th:src="@{/js/jquery.min.js}"></script>
-<script th:src="@{/js/jquery.cookie.js}"></script>
-<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-<script th:src="@{/editormd/js/editormd.js}"></script>
-<script th:src="@{/js/adminlte.js}"></script>
-<script th:src="@{/js/mdeditor.js}"></script>
+	<!--引用文件-->
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/jquery.cookie.js}"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/editormd/js/editormd.js}"></script>
+	<script th:src="@{/js/adminlte.js}"></script>
+	<script th:src="@{/js/mdeditor.js}"></script>
 </body>
 </html>

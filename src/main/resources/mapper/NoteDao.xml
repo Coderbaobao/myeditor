@@ -17,6 +17,14 @@
             
         WHERE noteId = #{noteId}
     </update>
+    
+     <insert id="updateGroupId" parameterType="com.it.bean.Note">
+        UPDATE note
+        SET
+         	group_id  = #{group_id}
+            
+        WHERE noteId = #{noteId}
+    </insert>
      
      <select id="findById" resultType="com.it.bean.Note"
       parameterType="java.lang.String">

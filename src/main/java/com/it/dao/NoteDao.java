@@ -10,6 +10,8 @@ public interface NoteDao {
 	
 	int update(Note note);
 	
+	int updateGroupId(Note note);
+	
 	Note findById(String noteId);
 	
 }

@@ -15,6 +15,8 @@ public interface NoteService {
     int deleteNote(String id);
 
     int updateNote(Note note);
+    
+    int MoveNote(Note note);
 
     Note findById(String id);
         	

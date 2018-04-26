@@ -78,6 +78,29 @@ public class NoteController {
 		return createNote;
 	}
 	
+	@RequestMapping(value = "/moveNote", method = RequestMethod.POST,produces="application/json;charset=utf-8")
+	@ResponseBody
+	public Response<Note> moveNote(@RequestBody Note newNote){
+		Note note = noteService.findById(newNote.getNoteId());
+		Response<Note> createNote = new Response<Note>();
+		if(note != null) {
+			int result = noteService.MoveNote(newNote);
+			if(result > 0) {
+				createNote.setSuccess(1);
+				createNote.setMessage("移动成功！");
+				createNote.setData(note);
+			}else {
+				createNote.setSuccess(0);
+				createNote.setMessage("移动失败！");
+			} 
+		}else {
+			createNote.setSuccess(0);
+			createNote.setMessage("移动失败！");
+		}
+		
+		return createNote;
+	}
+	
 	@RequestMapping(value = "/delNotebyId", method = RequestMethod.GET,produces="application/json;charset=utf-8")
 	@ResponseBody
 	public Response<Note> delNoteById(String noteId){

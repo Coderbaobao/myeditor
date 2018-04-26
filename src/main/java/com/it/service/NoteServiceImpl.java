@@ -32,4 +32,9 @@ public class NoteServiceImpl implements NoteService {
 		return noteDao.findById(noteId);
 	}
 
+	@Override
+	public int MoveNote(Note note) {
+		return noteDao.updateGroupId(note);
+	}
+
 }

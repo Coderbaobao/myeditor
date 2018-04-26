@@ -30,6 +30,10 @@ $(function() {
 	$("#userName").html(user.userName);
 	console.log(user.userName);
 	findGroupAll();
+	$("#moveBtn").hide();
+	$("#newNote").hide();
+	$("#saveBtn").hide();
+	$("#delBtn").hide();
 
 });
 function findGroupAll(){
@@ -40,6 +44,7 @@ function findGroupAll(){
 		success : function(val) {
 			if (val.success == 1){
 				for(var i = 0; i < val.list.length;i++){	
+					//侧栏分组
 					$("#groupList").append($('<li />',{'class':'treeview','id':'root'+ val.list[i].groupId +''})
 					        .append('<a onclick="funcGetGroupId(\''+ val.list[i].groupId +'\',\''+ val.list[i].groupName +'\')">'
 							 +'<i class="fa fa-files-o"></i>'
@@ -48,11 +53,17 @@ function findGroupAll(){
 		            		 +'<span class="label label-primary pull-right">'+ val.list[i].notes.length +'</span></span>')	
 		            		 .append($('<ul />',{'class':'treeview-menu','id':''+ val.list[i].groupId +''})
 						))
+						//下拉框分组
+					$("#move_menu").append($('<li />')
+							 .append('<a onclick="moveNote(\''+ val.list[i].groupId +'\')">'
+									 +'<span>'+ val.list[i].groupName +'</span>'))
+									 
 		            	 for(var y = 0; y < val.list[i].notes.length; y++){
 		            		 $("#"+ val.list[i].groupId +"").append('<li>'
 		             				 +'<a href="javascript:getContent(\''+ val.list[i].notes[y].noteId +'\')"' 
 		             				 +'id="'+ val.list[i].notes[y].noteId +'"><i class="fa fa-circle-o">'
 		             				 +'</i>'+ val.list[i].notes[y].title +'</a></li>')
+		             				
 		 					}
 				}	
 			}
@@ -65,6 +76,10 @@ function findGroupAll(){
 
 function funcGetGroupId(id,name){
 	$("#title").val(name);
+	$("#moveBtn").hide();
+	$("#newNote").hide();
+	$("#saveBtn").show();
+	$("#delBtn").show();
 	if(getGroupId != id){
 		getGroupId = id;
 	}
@@ -84,7 +99,37 @@ function guid() {
 function isContains(str, substr) {
     return str.indexOf(substr) >= 0;
 }
- 
+
+function moveNote(id){
+	$.ajax({
+		type : "POST",
+		url : URL + "note/moveNote", 
+		data : JSON.stringify({
+			group_id   :  id,
+			noteId    :  getNoteId
+		}),
+		dataType : 'json',
+		contentType : 'application/json; charset=utf-8',
+		success : function(data) {
+			console.log(data);
+			if (data.success == 1){
+				var movetitle = $("#title").val();
+				$("#"+ getNoteId +"").remove();
+				$("#title").val("");
+				
+				$("#"+ id +"").append('<li>'
+         				 +'<a href="javascript:getContent(\''+ getNoteId +'\')"'
+         				 +'id="'+ getNoteId +'"><i class="fa fa-circle-o">'
+         				 +'</i>'+ movetitle +'</a></li>')
+				alert("移动成功！");
+			}		
+		},
+		error : function() {
+			alert("移动失败");
+		}
+	});
+}
+
 $("#newGroup").click(function(groupName) {
 	var groupName = $("#groupName").val();
 	getGroupId = guid();
@@ -137,6 +182,10 @@ function getContent(id) {
 				getNoteId = id;
 				$("#content").val(data.data.content);
 				$("#title").val(data.data.title);
+				$("#moveBtn").show();
+				$("#newNote").show();
+				$("#saveBtn").show();
+				$("#delBtn").show();
 				$(function() {
 					editormd("test-editormd", {
 					});
