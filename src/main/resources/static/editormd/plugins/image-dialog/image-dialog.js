@@ -16,7 +16,6 @@
 		var pluginName   = "image-dialog";
 
 		exports.fn.imageDialog = function() {
-
             var _this       = this;
             var cm          = this.cm;
             var lang        = this.lang;

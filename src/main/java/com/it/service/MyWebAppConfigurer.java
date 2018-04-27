@@ -12,7 +12,7 @@ public class MyWebAppConfigurer extends WebMvcConfigurationSupport{
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
         //上传的图片在D盘下的temp目录下，访问路径如：http://localhost:8080/pic/d3cf0281-bb7f-40e0-ab77-406db95ccf2c.jpg
         //其中pic表示访问的前缀。"file:E:/temp/"是文件真实的存储路径
-        registry.addResourceHandler("/pic/**").addResourceLocations("file:E:/temp/");
+        registry.addResourceHandler("/pic/**").addResourceLocations("file:D:/temp/");
 	}
 	
 }

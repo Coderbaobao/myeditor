@@ -67,7 +67,26 @@
 							class="dropdown-toggle" data-toggle="dropdown"> <img
 								th:src="@{img/user2-160x160.jpg}" class="user-image"
 								alt="User Image"> <span class="hidden-xs" id="userName"></span>
-						</a></li>
+						</a>
+						<ul class="dropdown-menu">
+							<!-- User image -->
+							<li class="user-header"><img
+								th:src="@{img/user2-160x160.jpg}" class="img-circle"
+								alt="User Image">
+								<p>
+									Alexander Pierce - Web Developer <small>Member since
+										Nov. 2012</small>
+								</p></li>
+							<!-- Menu Footer-->
+							<li class="user-footer">
+								<div class="pull-left">
+									<a href="#" class="btn btn-default btn-flat">Profile</a>
+								</div>
+								<div class="pull-right">
+									<a href="login.html" class="btn btn-default btn-flat">Sign out</a>
+								</div>
+							</li>
+						</ul></li>
 					</ul>
 				</div>
 			</nav>
@@ -115,6 +134,7 @@
 	<!--引用文件-->
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/jquery.cookie.js}"></script>
+	<script th:src="@{/js/ImageClipboard.js}"></script>
 	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 	<script th:src="@{/editormd/js/editormd.js}"></script>
 	<script th:src="@{/js/adminlte.js}"></script>

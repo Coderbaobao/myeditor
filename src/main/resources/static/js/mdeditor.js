@@ -7,6 +7,7 @@ var isGN; //true:group  false:note
 var user = JSON.parse($.cookie('data'));
 
 $(function() {
+	
 	editormd("test-editormd", {
 		width : "100%",
 		height : 940,
@@ -18,6 +19,7 @@ $(function() {
 		taskList : true,
 		tex : true,
 		tocm : true,
+		watch :false,
 		previewCodeHighlight : true,
 		saveHTMLToTextarea : true,
 		flowChart : true,
@@ -25,10 +27,9 @@ $(function() {
 		sequenceDiagram : true,
 		imageUpload : true,
 		imageFormats : [ 'jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp' ],
-		imageUploadURL : "/uploadimg",
+		imageUploadURL : "/uploadimg"
 	});	
 	$("#userName").html(user.userName);
-	console.log(user.userName);
 	findGroupAll();
 	$("#moveBtn").hide();
 	$("#newNote").hide();
@@ -36,6 +37,37 @@ $(function() {
 	$("#delBtn").hide();
 
 });
+ //粘贴上传图片
+var clipboard = new ImageClipboard('#test-editormd')
+clipboard.onpaste = function(base64) {
+	if (base64.indexOf("data:image/png")) {
+		$.ajax({
+			url : URL + "/uploadBase64",
+			dataType : "JSON",
+			data : {
+				base64Data : base64
+			},
+			type : "POST",
+			success : function(data) {
+				if (data.success === 1) {
+					var url = "![](" + data.url + ")";
+					var old = $("#content").val();
+					$("#content").val(old + url);
+					 $(function() {
+						editormd("test-editormd", {
+							
+						});
+					});
+				}
+			},
+			error : function() {
+				console.log("上传失败");
+			}
+		});
+	}
+
+};
+
 function findGroupAll(){
 	$.ajax({
 		type : "GET",
@@ -76,8 +108,8 @@ function findGroupAll(){
 
 function funcGetGroupId(id,name){
 	$("#title").val(name);
+	$("#newNote").show();
 	$("#moveBtn").hide();
-	$("#newNote").hide();
 	$("#saveBtn").show();
 	$("#delBtn").show();
 	if(getGroupId != id){
@@ -208,7 +240,8 @@ $("#newNote").click(function() {
 		url : URL + "note/addNote",
 		data : JSON.stringify({
 			noteId   : getNoteId,
-			group_id : getGroupId
+			group_id : getGroupId,
+			title    : newtitle
 		}),
 		dataType : 'json',
 		contentType : 'application/json; charset=utf-8',
@@ -296,6 +329,7 @@ $("#delBtn").click(function() {
 			url : URL + "group/delGroupbyId"+ "?groupId=" + getGroupId,
 			contentType : 'application/json; charset=utf-8',
 			success : function(data) {
+				console.log(data);
 				if (data.success == 1){
 					$("#root"+ getGroupId +"").remove();
 					$("#title").val("");

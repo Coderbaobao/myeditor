@@ -34,7 +34,7 @@
         window.editormd = factory();
 	}
     
-}(function() {    
+}(function() { 
 
     /* Require.js assignment replace */
     
@@ -1999,7 +1999,7 @@
                 emailLink            : settings.emailLink,        // for mail address auto link
                 flowChart            : settings.flowChart,
                 sequenceDiagram      : settings.sequenceDiagram,
-                previewCodeHighlight : settings.previewCodeHighlight,
+                previewCodeHighlight : settings.previewCodeHighlight
             };
             
             var markedOptions = this.markedOptions = {
@@ -2198,7 +2198,6 @@
         
         replaceSelection : function(value) {
             this.cm.replaceSelection(value);
-
             return this;
         },
         
@@ -2215,7 +2214,6 @@
         
         insertValue : function(value) {
             this.replaceSelection(value);
-
             return this;
         },
         
@@ -2700,7 +2698,6 @@
             var settings = this.settings;
             
             path = settings.pluginPath + path;
-            
             if (typeof define === "function") 
             {            
                 if (typeof this[name] === "undefined")
@@ -2726,7 +2723,7 @@
             {
                 $.proxy(editormd.loadPlugins[name], this)(cm);
             }
-            
+           
             return this;
         },
                 
@@ -2767,6 +2764,7 @@
             return this;
         }
     };
+    //粘贴图片上传
     
     editormd.fn.init.prototype = editormd.fn; 
    
@@ -2808,7 +2806,7 @@
             editor.children("." + this.classPrefix + "mask").css("z-index", parseInt(dialog.css("z-index")) - 1).show();
         }
     };
-
+	
     editormd.toolbarHandlers = {
         undo : function() {
             this.cm.undo();
@@ -3085,6 +3083,7 @@
 
         link : function() {
             this.executePlugin("linkDialog", "link-dialog/link-dialog");
+            
         },
 
         "reference-link" : function() {
@@ -3296,7 +3295,7 @@
         "Shift-Alt-P"      : "pagebreak",
         "F9"               : "watch",
         "F10"              : "preview",
-        "F11"              : "fullscreen",
+        "F11"              : "fullscreen"
     };
     
     /**
@@ -3395,7 +3394,7 @@
             emoji                : false,          // :emoji: , Support Twemoji, fontAwesome, Editor.md logo emojis.
             tex                  : false,          // TeX(LaTeX), based on KaTeX
             flowChart            : false,          // flowChart.js only support IE9+
-            sequenceDiagram      : false,          // sequenceDiagram.js only support IE9+
+            sequenceDiagram      : false           // sequenceDiagram.js only support IE9+
         };
         
         var settings        = $.extend(defaults, options || {});    
@@ -3943,7 +3942,7 @@
             emailLink            : settings.emailLink,        // for mail address auto link
             flowChart            : settings.flowChart,
             sequenceDiagram      : settings.sequenceDiagram,
-            previewCodeHighlight : settings.previewCodeHighlight,
+            previewCodeHighlight : settings.previewCodeHighlight
         };
 
         var markedOptions = {
@@ -4592,7 +4591,7 @@
 
         return datefmt;
     };
-
+	
     return editormd;
 
 }));

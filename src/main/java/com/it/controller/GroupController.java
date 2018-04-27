@@ -74,22 +74,22 @@ public class GroupController {
 	
 	@RequestMapping(value = "/delGroupbyId", method = RequestMethod.GET,produces="application/json;charset=utf-8")
 	@ResponseBody
-	public Response<Group> delNoteById(String id){
-		Group group = groupService.findById(id);
+	public Response<Group> delNoteById(String groupId){
+		Group group = groupService.findById(groupId);
 		Response<Group> createNote = new Response<Group>();
 		if (group != null) {
-			int de = groupService.deleteGroup(id);
+			int de = groupService.deleteGroup(groupId);
 			if(de > 0) {
 				createNote.setSuccess(1);
 				createNote.setMessage("删除成功！");
 			}else {
 				createNote.setSuccess(0);
-				createNote.setMessage("查询失败！");
+				createNote.setMessage("删除失败！");
 			}
 			
 		} else {
 			createNote.setSuccess(0);
-			createNote.setMessage("查询失败！");
+			createNote.setMessage("删除失败！");
 		}
 		return createNote;
 	}

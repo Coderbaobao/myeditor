@@ -24,4 +24,10 @@ public class IndexController {
 		return "thymeleaf/mdEditor";
 	}
 	
+	@RequestMapping("/imageUpload")
+	public String ImageUpload() {
+	
+		return "thymeleaf/imageUpload";
+	}
+	
 }

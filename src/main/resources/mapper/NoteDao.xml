@@ -4,8 +4,8 @@
 <mapper namespace="com.it.dao.NoteDao">
 	
 	<insert id="add" parameterType="com.it.bean.Note">
-		INSERT INTO note (noteId,createTime,group_id)
-		VALUES (#{noteId}, #{createTime}, #{group_id})
+		INSERT INTO note (noteId,title,createTime,group_id)
+		VALUES (#{noteId}, #{title}, #{createTime}, #{group_id})
 	</insert>
 	
 	 <update id="update" parameterType="com.it.bean.Note">
