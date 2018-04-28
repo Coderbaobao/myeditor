@@ -6,7 +6,18 @@ var isGN; //true:group  false:note
 
 var user = JSON.parse($.cookie('data'));
 
-$(function() {
+$(function(){
+	$("#userName").html(user.userName);
+	findGroupAll();
+	$("#content").hide();
+	$("#moveBtn").hide();
+	$("#newNote").hide();
+	$("#saveBtn").hide();
+	$("#delBtn").hide();
+})
+
+function showMdEditor() {
+	$("#content").show();
 	
 	editormd("test-editormd", {
 		width : "100%",
@@ -19,7 +30,6 @@ $(function() {
 		taskList : true,
 		tex : true,
 		tocm : true,
-		watch :false,
 		previewCodeHighlight : true,
 		saveHTMLToTextarea : true,
 		flowChart : true,
@@ -29,14 +39,9 @@ $(function() {
 		imageFormats : [ 'jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp' ],
 		imageUploadURL : "/uploadimg"
 	});	
-	$("#userName").html(user.userName);
-	findGroupAll();
-	$("#moveBtn").hide();
-	$("#newNote").hide();
-	$("#saveBtn").hide();
-	$("#delBtn").hide();
 
-});
+
+};
  //粘贴上传图片
 var clipboard = new ImageClipboard('#test-editormd')
 clipboard.onpaste = function(base64) {
@@ -213,7 +218,7 @@ function getContent(id) {
 				if(isGN != false){
 					isGN = false;
 				}	
-				
+				showMdEditor();
 				getNoteId = id;
 				$("#content").val(data.data.content);
 				$("#title").val(data.data.title);
@@ -235,6 +240,7 @@ function getContent(id) {
 
 
 $("#newNote").click(function() {
+	showMdEditor();
 	$("#title").val("");
 	getNoteId = guid();
 	var newtitle = "新建笔记";
@@ -337,6 +343,7 @@ $("#delBtn").click(function() {
 				if (data.success == 1){
 					$("#root"+ getGroupId +"").remove();
 					$("#title").val("");
+					$("#content").hide();
 					alert("删除成功");
 				}		
 			},

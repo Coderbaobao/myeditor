@@ -83,7 +83,7 @@ public class GroupController {
 		if (group != null) {
 			int de = groupService.deleteGroup(groupId);
 			int de2 = noteService.deleteByGroupId(groupId);
-			if(de > 0 && de2>0) {
+			if(de > 0 || de2>0) {
 				createNote.setSuccess(1);
 				createNote.setMessage("删除成功！");
 			}else {

@@ -2764,7 +2764,6 @@
             return this;
         }
     };
-    //粘贴图片上传
     
     editormd.fn.init.prototype = editormd.fn; 
    
