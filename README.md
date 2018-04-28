@@ -1,5 +1,7 @@
 # myeditor
 
+java新手 还存在很多bug
+
 #### 主要技术
 - 1、前端：thymeleaf + bootstrap + jQuery 
 - 2、后端：Java8 + Springmvc + Spring + mybatis
