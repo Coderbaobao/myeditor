@@ -88,7 +88,7 @@ function findGroupAll(){
 						//下拉框分组
 					$("#move_menu").append($('<li />')
 							 .append('<a onclick="moveNote(\''+ val.list[i].groupId +'\')">'
-									 +'<span>'+ val.list[i].groupName +'</span>'))
+									 +'<span id="'+'pulldown'+val.list[i].groupId+'">'+ val.list[i].groupName +'</span>'))
 									 
 		            	 for(var y = 0; y < val.list[i].notes.length; y++){
 		            		 $("#"+ val.list[i].groupId +"").append('<li>'
@@ -189,6 +189,9 @@ $("#newGroup").click(function(groupName) {
 	            		 +'<span class="label label-primary pull-right">0</span></span>')	
 	            		 .append($('<ul />',{'class':'treeview-menu','id':''+ getGroupId +'' })
 					))
+					$("#move_menu").append($('<li />')
+							 .append('<a onclick="moveNote(\''+ getGroupId +'\')">'
+									 +'<span id="'+'pulldown'+ getGroupId +'">'+ groupName +'</span>'))
 					$("#groupName").val("");
 			}
 		},
@@ -282,6 +285,7 @@ $("#saveBtn").click(function() {
 					//删除<span>标签内容  在追加<a>标签内容
 					$("#span"+ getGroupId +"").html("");
 					$("#span"+ getGroupId +"").append(''+ title +'')
+					$("#pulldown"+ getGroupId +"").html(title);
 					alert("保存成功");
 				}
 					
