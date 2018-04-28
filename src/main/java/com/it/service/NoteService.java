@@ -13,6 +13,8 @@ public interface NoteService {
     int addNote(Note note);
 
     int deleteNote(String id);
+    
+    int deleteByGroupId(String id);
 
     int updateNote(Note note);
     

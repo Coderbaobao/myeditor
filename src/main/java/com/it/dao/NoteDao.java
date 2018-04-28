@@ -8,6 +8,8 @@ public interface NoteDao {
 	
 	int delete(String noteId);
 	
+	int deleteByGroupId(String groupId);
+	
 	int update(Note note);
 	
 	int updateGroupId(Note note);

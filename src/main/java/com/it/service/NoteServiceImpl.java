@@ -37,4 +37,9 @@ public class NoteServiceImpl implements NoteService {
 		return noteDao.updateGroupId(note);
 	}
 
+	@Override
+	public int deleteByGroupId(String groupId) {
+		return noteDao.deleteByGroupId(groupId);
+	}
+
 }

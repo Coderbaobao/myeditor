@@ -39,4 +39,9 @@
     	WHERE 
     	noteId = #{noteId}
     </delete>
+    <delete id="deleteByGroupId" parameterType="java.lang.String">
+    	DELETE FROM note 
+    	WHERE 
+    	group_id = #{groupId}
+    </delete>
 </mapper>

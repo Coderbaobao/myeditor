@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.it.bean.Group;
 import com.it.bean.Response;
 import com.it.service.GroupServiceImpl;
+import com.it.service.NoteServiceImpl;
 
 @Controller
 @RequestMapping("/group")
@@ -19,6 +20,8 @@ public class GroupController {
 	
 	@Autowired
 	private GroupServiceImpl groupService;
+	@Autowired
+	private NoteServiceImpl noteService;
 	
 	@RequestMapping(value = "/findGroupAll", method = RequestMethod.GET,produces="application/json;charset=utf-8")
 	@ResponseBody
@@ -79,7 +82,8 @@ public class GroupController {
 		Response<Group> createNote = new Response<Group>();
 		if (group != null) {
 			int de = groupService.deleteGroup(groupId);
-			if(de > 0) {
+			int de2 = noteService.deleteByGroupId(groupId);
+			if(de > 0 && de2>0) {
 				createNote.setSuccess(1);
 				createNote.setMessage("删除成功！");
 			}else {
