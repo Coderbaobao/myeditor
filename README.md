@@ -14,6 +14,7 @@
 
 #### 依赖开源：
 [Editor.md](https://pandao.github.io/editor.md/)
+
 [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 #### 界面：
 <img src="https://github.com/Coderbaobao/myeditor/blob/master/doc/Snipaste_2018-04-28_09-23-40.png"/> 
