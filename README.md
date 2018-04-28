@@ -12,6 +12,9 @@
 - 2、保存移动和删除分组、笔记
 - 3、粘贴图片上传
 
+#### 依赖开源：
+[Editor.md](https://pandao.github.io/editor.md/)
+[AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 #### 界面：
 <img src="https://github.com/Coderbaobao/myeditor/blob/master/doc/Snipaste_2018-04-28_09-23-40.png"/> 
 
