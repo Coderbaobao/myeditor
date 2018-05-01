@@ -4,22 +4,28 @@ import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.it.bean.Response;
 import com.it.bean.User;
 import com.it.service.UserServiceImpl;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class LoginController {
 	
 	@Autowired
 	private UserServiceImpl userService;
+	
+	@RequestMapping(value = "/test",method = RequestMethod.GET)
+	public String login() {
+		
+		return "test";
+	}
 	
 	@RequestMapping(value = "/register",method = RequestMethod.POST,produces="application/json;charset=utf-8" )
 	@ResponseBody

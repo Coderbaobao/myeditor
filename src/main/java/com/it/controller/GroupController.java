@@ -3,18 +3,17 @@ package com.it.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.it.bean.Group;
 import com.it.bean.Response;
 import com.it.service.GroupServiceImpl;
 import com.it.service.NoteServiceImpl;
-
-@Controller
+@RestController
 @RequestMapping("/group")
 public class GroupController {
 	
@@ -23,7 +22,7 @@ public class GroupController {
 	@Autowired
 	private NoteServiceImpl noteService;
 	
-	@RequestMapping(value = "/findGroupAll", method = RequestMethod.GET,produces="application/json;charset=utf-8")
+	@RequestMapping(value = "/findGroupAll", method = RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Response<Group> findGroupAll(String noteId){
 		List<Group> list = groupService.findAll(noteId);
@@ -39,7 +38,7 @@ public class GroupController {
 		return create;
 	}
 	
-	@RequestMapping(value = "/addGroup", method = RequestMethod.POST,produces="application/json;charset=utf-8")
+	@RequestMapping(value = "/addGroup", method = RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Response<Group> AddGroup(@RequestBody Group group){
 		int addGroup = groupService.addGroup(group);
@@ -54,7 +53,7 @@ public class GroupController {
 		return create;
 	}
 	
-	@RequestMapping(value = "/saveGroup", method = RequestMethod.POST,produces="application/json;charset=utf-8")
+	@RequestMapping(value = "/saveGroup", method = RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Response<Group> saveGroup(@RequestBody Group newGroup){
 		Group group = groupService.findById(newGroup.getGroupId());
@@ -75,7 +74,7 @@ public class GroupController {
 		return create;
 	}
 	
-	@RequestMapping(value = "/delGroupbyId", method = RequestMethod.GET,produces="application/json;charset=utf-8")
+	@RequestMapping(value = "/delGroupbyId", method = RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Response<Group> delNoteById(String groupId){
 		Group group = groupService.findById(groupId);

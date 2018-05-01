@@ -130,7 +130,7 @@
         dialogMaskBgColor    : "#fff",
         dialogMaskOpacity    : 0.1,
         fontSize             : "13px",
-        saveHTMLToTextarea   : false,
+        saveHTMLToTextarea   : true,
         disabledKeyMaps      : [],
         
         onload               : function() {},
@@ -145,7 +145,7 @@
         onscroll             : function() {},
         onpreviewscroll      : function() {},
         
-        imageUpload          : false,
+        imageUpload          : true,
         imageFormats         : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
         imageUploadURL       : "",
         crossDomainUpload    : false,

@@ -2,24 +2,24 @@ package com.it.controller;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.it.bean.Note;
 import com.it.bean.Response;
 import com.it.service.NoteServiceImpl;
 
-@Controller
+@RestController
 @RequestMapping("/note")
 public class NoteController {
 	
 	@Autowired
 	private NoteServiceImpl noteService;
 	
-	@RequestMapping(value = "/addNote", method = RequestMethod.POST,produces="application/json;charset=utf-8")
+	@RequestMapping(value = "/addNote", method = RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Response<Note> addNote(@RequestBody Note note){
 		Response<Note> createNote = new Response<Note>();
@@ -40,7 +40,7 @@ public class NoteController {
 		}
 		return createNote;
 	}
-	@RequestMapping(value = "/saveNote", method = RequestMethod.POST,produces="application/json;charset=utf-8")
+	@RequestMapping(value = "/saveNote", method = RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Response<Note> saveNote(@RequestBody Note newNote){
 		Note note = noteService.findById(newNote.getNoteId());
@@ -62,7 +62,7 @@ public class NoteController {
 		}
 		return createNote;
 	}
-	@RequestMapping(value = "/findById", method = RequestMethod.GET,produces="application/json;charset=utf-8")
+	@RequestMapping(value = "/findById", method = RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Response<Note> findById(String noteId){
 		Note note = noteService.findById(noteId);
@@ -78,7 +78,7 @@ public class NoteController {
 		return createNote;
 	}
 	
-	@RequestMapping(value = "/moveNote", method = RequestMethod.POST,produces="application/json;charset=utf-8")
+	@RequestMapping(value = "/moveNote", method = RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Response<Note> moveNote(@RequestBody Note newNote){
 		Note note = noteService.findById(newNote.getNoteId());
@@ -101,7 +101,7 @@ public class NoteController {
 		return createNote;
 	}
 	
-	@RequestMapping(value = "/delNotebyId", method = RequestMethod.GET,produces="application/json;charset=utf-8")
+	@RequestMapping(value = "/delNotebyId", method = RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Response<Note> delNoteById(String noteId){
 		Note note = noteService.findById(noteId);

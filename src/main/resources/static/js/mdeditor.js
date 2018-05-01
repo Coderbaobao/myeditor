@@ -1,3 +1,4 @@
+//var URL = "http://liaoxubao.cn:8080/";
 var URL = "http://localhost:8080/";
 
 var getGroupId;
@@ -8,16 +9,12 @@ var user = JSON.parse($.cookie('data'));
 
 $(function(){
 	$("#userName").html(user.userName);
-	findGroupAll();
-	$("#content").hide();
+	$("#editorContent").hide();
 	$("#moveBtn").hide();
 	$("#newNote").hide();
 	$("#saveBtn").hide();
 	$("#delBtn").hide();
-})
-
-function showMdEditor() {
-	$("#content").show();
+	findGroupAll();
 	
 	editormd("test-editormd", {
 		width : "100%",
@@ -39,8 +36,10 @@ function showMdEditor() {
 		imageFormats : [ 'jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp' ],
 		imageUploadURL : "/uploadimg"
 	});	
+})
 
-
+function showMdEditor() {
+	$("#editorContent").show();
 };
  //粘贴上传图片
 var clipboard = new ImageClipboard('#test-editormd')
@@ -343,7 +342,7 @@ $("#delBtn").click(function() {
 				if (data.success == 1){
 					$("#root"+ getGroupId +"").remove();
 					$("#title").val("");
-					$("#content").hide();
+					$("#editorContent").hide();
 					alert("删除成功");
 				}		
 			},

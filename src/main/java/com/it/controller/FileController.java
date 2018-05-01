@@ -1,28 +1,30 @@
 package com.it.controller;
-import com.it.utils.*;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-@Controller
+import com.it.utils.RandomUtil;
+
+@RestController
 public class FileController {
-	private static String UPLOADED_FOLDER = "D:/temp/";
-	private static String LOCALPATH="http://localhost:8080/pic/";
+	private static String UPLOADED_FOLDER = "/home/ubuntu/images/";
+	private static String LOCALPATH="http://liaoxubao.cn:8080/pic/";
 	private static Logger logger = Logger.getLogger(FileController.class);
 	//处理文件上传
     @RequestMapping(value="/uploadimg")

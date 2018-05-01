@@ -6,25 +6,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 		
-	@RequestMapping("/login")
+	@RequestMapping(value="/login")
 	public String login() {
 		
 		return "thymeleaf/login";
 	}
 	
-	@RequestMapping("/register")
+	@RequestMapping(value="/register")
 	public String register() {
 		
 		return "thymeleaf/register";
 	}
 	
-	@RequestMapping("/mdEditor")
+	@RequestMapping(value="/mdEditor")
 	public String index() {
 	
 		return "thymeleaf/mdEditor";
 	}
 	
-	@RequestMapping("/imageUpload")
+	@RequestMapping(value="/imageUpload")
 	public String ImageUpload() {
 	
 		return "thymeleaf/imageUpload";
