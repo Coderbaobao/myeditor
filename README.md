@@ -24,7 +24,9 @@ java新手 还存在很多bug
 ### 演示：
 #### 添加修改分组、笔记：
 <img src="https://github.com/Coderbaobao/myeditor/blob/master/doc/Video_2018-04-28_092008.gif"/> 
+
 #### 粘贴图片上传：
 <img src="https://github.com/Coderbaobao/myeditor/blob/master/doc/Video_2018-04-28_092608.gif"/> 
+
 #### 搜索匹配：
 <img src="https://github.com/Coderbaobao/myeditor/blob/master/doc/Video_2018-05-02_105614.gif"/> 
