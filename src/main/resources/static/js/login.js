@@ -1,5 +1,5 @@
-//var URL = "http://liaoxubao.cn:8080/";
-var URL = "http://localhost:8080/";
+var URL = "http://liaoxubao.cn:8080/";
+//var URL = "http://localhost:8080/";
 
 var messageInfo = $('#message-info');
 var message = $('#message');

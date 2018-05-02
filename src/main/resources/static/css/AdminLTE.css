@@ -188,7 +188,7 @@ a:focus {
 .main-header {
   position: relative;
   max-height: 100px;
-  z-index: 1030;
+  z-index: 0;
 }
 .main-header .navbar {
   -webkit-transition: margin-left 0.3s ease-in-out;
@@ -415,7 +415,7 @@ a:focus {
   padding-top: 50px;
   min-height: 100%;
   width: 230px;
-  z-index: 810;
+  z-index: 0;
   -webkit-transition: -webkit-transform 0.3s ease-in-out, width 0.3s ease-in-out;
   -moz-transition: -moz-transform 0.3s ease-in-out, width 0.3s ease-in-out;
   -o-transition: -o-transform 0.3s ease-in-out, width 0.3s ease-in-out;

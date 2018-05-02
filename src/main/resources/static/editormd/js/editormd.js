@@ -71,7 +71,7 @@
             "list-ul", "list-ol", "hr", "|",
             "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
             "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|",
-            "help", "info"
+            "help"
         ],
         simple : [
             "undo", "redo", "|", 
