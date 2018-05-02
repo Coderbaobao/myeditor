@@ -30,7 +30,7 @@ $(function(){
 	});	
 	
 	$("#userName").html(user.userName);
-	$("#editorContent").hide();
+	$("#test-editormd").hide();
 	$("#moveBtn").hide();
 	$("#newNote").hide();
 	$("#saveBtn").hide();
@@ -71,7 +71,7 @@ function filterList(list) {
 }
 
 function showMdEditor() {
-	$("#editorContent").show();
+	$("#test-editormd").show();
 };
  //粘贴上传图片
 var clipboard = new ImageClipboard('#test-editormd')
@@ -403,6 +403,7 @@ $("#delBtn").click(function() {
 			success : function(data) {
 				if (data.success == 1){
 					$("#"+ getNoteId +"").remove();
+					$("#so"+ getNoteId +"").remove();
 					$("#title").val("");
 					alert("删除成功");
 				}
