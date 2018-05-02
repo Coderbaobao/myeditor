@@ -264,6 +264,7 @@ $("#newGroup").click(function(groupName) {
 							 .append('<a onclick="moveNote(\''+ getGroupId +'\')">'
 									 +'<span id="'+'pulldown'+ getGroupId +'">'+ groupName +'</span>'))
 					$("#groupName").val("");
+					
 			}
 		},
 		error : function(error) {
@@ -302,12 +303,11 @@ $("#newNote").click(function() {
          		
          			 )
          		$("#content").val("");
-         		$(function() {
-        			editormd("test-editormd", {
-        			});
-        		});
-			   }
-				alert("新建成功");	
+         		
+         		getContent(getNoteId);
+         	
+        		alert("新建成功");
+			   }		
 		},
 		error : function() {
 			alert("新建失败");
