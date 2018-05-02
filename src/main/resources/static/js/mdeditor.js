@@ -8,14 +8,6 @@ var isGN; //true:group  false:note
 var user = JSON.parse($.cookie('data'));
 
 $(function(){
-	$("#userName").html(user.userName);
-	$("#editorContent").hide();
-	$("#moveBtn").hide();
-	$("#newNote").hide();
-	$("#saveBtn").hide();
-	$("#delBtn").hide();
-	findGroupAll();
-	
 	editormd("test-editormd", {
 		width : "100%",
 		height : 940,
@@ -36,7 +28,47 @@ $(function(){
 		imageFormats : [ 'jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp' ],
 		imageUploadURL : "/uploadimg"
 	});	
+	
+	$("#userName").html(user.userName);
+	$("#editorContent").hide();
+	$("#moveBtn").hide();
+	$("#newNote").hide();
+	$("#saveBtn").hide();
+	$("#delBtn").hide();
+	$("#paste_catcher").remove();
+	findGroupAll();
+	
+	//搜索匹配功能
+	jQuery.expr[':'].Contains = function(a, i, m) {
+    return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+	};
+	
+	filterList($("#groupid"));
+    $('#js-groupId').bind('focus', function() {
+        $('#groupid').slideDown();
+    }).bind('blur', function() {
+        $('#groupid').slideUp();
+    })
+    $('#groupid').on('click', 'li', function() {
+        $('#js-groupId').val($(this).text())
+        $('#groupId').val($(this).data('id'))
+        getContent($(this).data('id'));
+        $('#groupid').slideUp()
+    });
 })
+
+function filterList(list) {
+    $('#js-groupId').bind('input propertychange', function() {
+        var filter = $(this).val();
+        if (filter) {
+            $matches = $(list).find('a:Contains(' + filter + ')').parent();
+            $('li', list).not($matches).slideUp();
+            $matches.slideDown();
+        } else {
+            $(list).find("li").slideDown();
+        }
+    });
+}
 
 function showMdEditor() {
 	$("#editorContent").show();
@@ -89,7 +121,7 @@ function findGroupAll(){
 		            		 +'<span class="label label-primary pull-right">'+ val.list[i].notes.length +'</span></span>')	
 		            		 .append($('<ul />',{'class':'treeview-menu','id':''+ val.list[i].groupId +''})
 						))
-						//下拉框分组
+					//下拉框分组
 					$("#move_menu").append($('<li />')
 							 .append('<a onclick="moveNote(\''+ val.list[i].groupId +'\')">'
 									 +'<span id="'+'pulldown'+val.list[i].groupId+'">'+ val.list[i].groupName +'</span>'))
@@ -99,7 +131,13 @@ function findGroupAll(){
 		             				 +'<a href="javascript:getContent(\''+ val.list[i].notes[y].noteId +'\')"' 
 		             				 +'id="'+ val.list[i].notes[y].noteId +'"><i class="fa fa-circle-o">'
 		             				 +'</i>'+ val.list[i].notes[y].title +'</a></li>')
-		             				
+		             		//搜索框
+		             		$("#groupid").append($('<li />',{'data-id':''+ val.list[i].notes[y].noteId +''})
+		             				.append('<a href="javascript:void(0)"'
+		             						+'id="so'+ val.list[i].notes[y].noteId +'">'
+		             						+''+ val.list[i].notes[y].title +'</a>')
+		             		
+		             			 )
 		 					}
 				}	
 			}
@@ -135,7 +173,37 @@ function guid() {
 function isContains(str, substr) {
     return str.indexOf(substr) >= 0;
 }
-
+//点击获取笔记本内容
+function getContent(id) { 
+	$.ajax({
+		type : "GET",
+		url : URL + "note/findById" + "?noteId=" + id,
+		contentType : 'application/json; charset=utf-8',
+		success : function(data) {
+			if (data.success == 1){
+				
+				if(isGN != false){
+					isGN = false;
+				}	
+				showMdEditor();
+				getNoteId = id;
+				$("#content").val(data.data.content);
+				$("#title").val(data.data.title);
+				$("#moveBtn").show();
+				$("#newNote").show();
+				$("#saveBtn").show();
+				$("#delBtn").show();
+				$(function() {
+					editormd("test-editormd", {
+					});
+				});
+			}		
+		},
+		error : function() {
+			alert("查询失败");
+		}
+	});
+};
 function moveNote(id){
 	$.ajax({
 		type : "POST",
@@ -147,7 +215,6 @@ function moveNote(id){
 		dataType : 'json',
 		contentType : 'application/json; charset=utf-8',
 		success : function(data) {
-			console.log(data);
 			if (data.success == 1){
 				var movetitle = $("#title").val();
 				$("#"+ getNoteId +"").remove();
@@ -206,37 +273,6 @@ $("#newGroup").click(function(groupName) {
 	});
 });
 
-function getContent(id) { 
-	$.ajax({
-		type : "GET",
-		url : URL + "note/findById" + "?noteId=" + id,
-		contentType : 'application/json; charset=utf-8',
-		success : function(data) {
-			if (data.success == 1){
-				
-				if(isGN != false){
-					isGN = false;
-				}	
-				showMdEditor();
-				getNoteId = id;
-				$("#content").val(data.data.content);
-				$("#title").val(data.data.title);
-				$("#moveBtn").show();
-				$("#newNote").show();
-				$("#saveBtn").show();
-				$("#delBtn").show();
-				$(function() {
-					editormd("test-editormd", {
-					});
-				});
-			}		
-		},
-		error : function() {
-			alert("查询失败");
-		}
-	});
-};
-
 
 $("#newNote").click(function() {
 	showMdEditor();
@@ -259,6 +295,12 @@ $("#newNote").click(function() {
          				 +'<a href="javascript:getContent(\''+ getNoteId +'\')"'
          				 +'id="'+ getNoteId +'"><i class="fa fa-circle-o">'
          				 +'</i>'+ newtitle +'</a></li>')
+				 //搜索框
+         		$("#groupid").append($('<li />',{'data-id':''+ getNoteId +''})
+         				.append('<a href="javascript:void(0)">'
+         						+''+ newtitle +'</a>')
+         		
+         			 )
          		$("#content").val("");
          		$(function() {
         			editormd("test-editormd", {
@@ -289,7 +331,7 @@ $("#saveBtn").click(function() {
 				if (data.success == 1){
 					//删除<span>标签内容  在追加<a>标签内容
 					$("#span"+ getGroupId +"").html("");
-					$("#span"+ getGroupId +"").append(''+ title +'')
+					$("#span"+ getGroupId +"").append(''+ title +'');
 					$("#pulldown"+ getGroupId +"").html(title);
 					alert("保存成功");
 				}
@@ -318,8 +360,10 @@ $("#saveBtn").click(function() {
 				if (data.success == 1){
 					//删除<a>标签内容  在追加<a>标签内容
 					$("#"+ getNoteId +"").html("");
-					$("#"+ getNoteId +"").append($('<i \>',{'class':'fa fa-circle-o'}))
-					$("#"+ getNoteId +"").append(''+ title +'')
+					$("#so"+ getNoteId +"").html("");
+					$("#"+ getNoteId +"").append($('<i \>',{'class':'fa fa-circle-o'}));
+					$("#"+ getNoteId +"").append(''+ title +'');
+					$("#so"+ getNoteId +"").append(''+ title +'');
 					alert("保存成功");
 				}
 					

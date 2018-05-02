@@ -101,14 +101,13 @@
 		<aside class="main-sidebar">
 			<!-- search form -->
 			<form action="#" method="get" class="sidebar-form">
-				<div class="input-group">
-					<input type="text" name="q" class="form-control"
-						placeholder="Search..."> <span class="input-group-btn">
-						<button type="submit" name="search" id="search-btn"
-							class="btn btn-flat">
-							<i class="fa fa-search"></i>
-						</button>
-					</span>
+				<div class="Companies">
+					<input type="text" id="js-groupId" class="form-control"
+						placeholder="Search...">
+					 <input type="hidden" id="groupId">
+				<ul id="groupid">
+                   
+                </ul>
 				</div>
 			</form>
 			<form class="sidebar-form">
@@ -142,7 +141,7 @@
 	<script th:src="@{/js/jquery.cookie.js}" src="/js/jquery.cookie.js"></script>
 	<script th:src="@{/js/ImageClipboard.js}" src="/js/ImageClipboard.js"></script>
 	<script th:src="@{/bootstrap/js/bootstrap.min.js}" src="/bootstrap/js/bootstrap.min.js"></script>
-	<script th:src="@{/editormd/js/editormd.js}" src="/editormd/js/editormd.js"></script>
+	<script th:src="@{/editormd/js/editormd.js}" src="/editormd/js/editormd.min.js"></script>
 	<script th:src="@{/js/adminlte.js}" src="/js/adminlte.js"></script>
 	<script th:src="@{/js/mdeditor.js}"src="/js/mdeditor.js"></script>
 </body>
