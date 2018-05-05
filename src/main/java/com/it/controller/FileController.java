@@ -24,7 +24,7 @@ import com.it.utils.RandomUtil;
 @RestController
 public class FileController {
 	private static String UPLOADED_FOLDER = "/home/ubuntu/images/";
-	private static String LOCALPATH="http://liaoxubao.cn:8080/pic/";
+	private static String LOCALPATH="http://193.112.47.88/pic/";
 //	private static String UPLOADED_FOLDER = "D:/temp/";
 //	private static String LOCALPATH="http://localhost:8080/pic/";
 	private static Logger logger = Logger.getLogger(FileController.class);

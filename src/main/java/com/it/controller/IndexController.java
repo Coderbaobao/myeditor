@@ -12,11 +12,12 @@ public class IndexController {
 		return "thymeleaf/login";
 	}
 	
+	/*
 	@RequestMapping(value="/register")
 	public String register() {
 		
 		return "thymeleaf/register";
-	}
+	}*/
 	
 	@RequestMapping(value="/mdEditor")
 	public String index() {

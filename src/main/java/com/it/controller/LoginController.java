@@ -1,8 +1,5 @@
 package com.it.controller;
 
-import java.util.Date;
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,36 +17,6 @@ public class LoginController {
 	
 	@Autowired
 	private UserServiceImpl userService;
-	
-	@RequestMapping(value = "/test",method = RequestMethod.GET)
-	public String login() {
-		
-		return "test";
-	}
-	
-	@RequestMapping(value = "/register",method = RequestMethod.POST,produces="application/json;charset=utf-8" )
-	@ResponseBody
-	public Response<User> register(@RequestBody User user){
-		Response<User> create = new Response<User>();
-		if(user != null) {
-			Date day = new Date();
-			user.setCreateTime(day);
-			user.setUserId(UUID.randomUUID().toString());
-			int add = userService.addUser(user);
-			if(add > 0) {
-				create.setSuccess(1);
-				create.setMessage("注册成功！");
-				create.setData(user);
-			} else {
-				create.setSuccess(0);
-				create.setMessage("注册失败！");
-			}
-		}else {
-			create.setSuccess(0);
-			create.setMessage("注册失败！");
-		}
-		return create;
-	}
 	
 	@RequestMapping(value = "/login",method = RequestMethod.POST,produces="application/json;charset=utf-8" )
 	@ResponseBody
@@ -71,4 +38,30 @@ public class LoginController {
 		}
 		return create;
 	}
+	
+	/*@RequestMapping(value = "/register",method = RequestMethod.POST,produces="application/json;charset=utf-8" )
+	@ResponseBody
+	public Response<User> register(@RequestBody User user){
+		Response<User> create = new Response<User>();
+		if(user != null) {
+			Date day = new Date();
+			user.setCreateTime(day);
+			user.setUserId(UUID.randomUUID().toString());
+			int add = userService.addUser(user);
+			if(add > 0) {
+				create.setSuccess(1);
+				create.setMessage("注册成功！");
+				create.setData(user);
+			} else {
+				create.setSuccess(0);
+				create.setMessage("注册失败！");
+			}
+		}else {
+			create.setSuccess(0);
+			create.setMessage("注册失败！");
+		}
+		return create;
+	}*/
+	
+	
 }

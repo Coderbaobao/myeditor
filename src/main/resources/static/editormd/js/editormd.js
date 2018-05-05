@@ -70,7 +70,7 @@
             "h1", "h2", "h3", "h4", "h5", "h6", "|", 
             "list-ul", "list-ol", "hr", "|",
             "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
-            "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|",
+            "goto-line", "watch", "preview", "clear", "search", "|",
             "help"
         ],
         simple : [
@@ -86,6 +86,7 @@
             "watch", "preview", "|",
             "help", "info"
         ]
+    	
     };
     
     editormd.defaults     = {
