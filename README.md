@@ -6,8 +6,8 @@
 - 1、前端：thymeleaf + bootstrap + jQuery 
 - 2、后端：Java8 + Springmvc + Spring + mybatis
 - 3、数据库：Mysql5.7
-- 4、部署：Springboot
-- 5、开发：Maven + Git
+- 4、部署：tomcat8.5
+- 5、开发：eclipse+Maven + Git
 
 #### 主要实现功能
 - 1、js动态生成html（添加分组和笔记）
